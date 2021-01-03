@@ -11,3 +11,27 @@
         <img src="{{profile.profile_photo.url}}" alt="profile-photo" class="img-fluid-circle" style="border-radius: 50%;height:200px;width: 200px;">
 
       </div>
+      <div class="col-md-5 text-left">
+        <br>
+        <p class="font">{{profile.bio}}</p>
+        <p class="font">{{profile.user}}</p>
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <span class="font-weight-bold">{{images|length}}</span> Posts
+          </li>
+          <li class="list-inline-item">
+            <span class="font-weight-bold">{{profile.user.follow.all | length}}</span> Followers
+          </li>
+          <li class="list-inline-item">
+            <span class="font-weight-bold">{{profile.user.c_user.all | length}}</span> Following
+          </li><br><br>
+          <li class="list-inline-item">
+            <a href="#" class="btn btn-primary">Follow</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
