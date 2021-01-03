@@ -28,7 +28,7 @@ class Profile(models.Model):
     #     return edited
 
 class Image(models.Model):
-    posted_by = models.ForeignKey(User, null=True)
+    posted_by = models.ForeignKey(User,on_delete=models.CASCADE, null=True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE,null=True)
     insta_image = models.ImageField(upload_to='picha/',null=True)
     caption = models.TextField(null=True)
@@ -61,7 +61,7 @@ class Comment(models.Model):
 
 class Follow(models.Model):
     users=models.ManyToManyField(User,related_name='follow')
-    current_user=models.ForeignKey(User,related_name='c_user',null=True)
+    current_user=models.ForeignKey(User,on_delete=models.CASCADE,related_name='c_user',null=True)
 
     @classmethod
     def follow(cls,current_user,new):
