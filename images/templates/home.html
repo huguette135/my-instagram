@@ -42,3 +42,26 @@
 
           <form action="{%url 'comment' pk=image.id%}" method="post" enctype="multipart/form-data" id="sema">
             {%csrf_token%}
+            {% bootstrap_form form%}
+
+            </form>
+
+            {% block scripts %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+            {% bootstrap_javascript %}
+            {% endblock %}
+          </div>
+        </div>
+      </div>
+
+      {% endfor %}
+    </div>
+
+    <div class="col-2 stories" style="max-width:20rem; margin-top:20px;">
+      <div class="" style="position:fixed; width:350px">
+
+        <header style="margin-bottom:30px;margin-top:20px;">
+          {% for profile in profile %}
+          {% if profile.user == user %}
+          <img class="mb-1" src="{{profile.profile_photo.url}}" alt="" style="height:50px;width:50px; border-radius:50%; float:left; margin-right:15px">
