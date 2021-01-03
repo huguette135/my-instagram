@@ -87,3 +87,34 @@
           </div>
           {% endif %}
           {% endfor %}
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- Large modal -->
+{% for image in images %}
+<!-- Modal -->
+<div class="modal fade" id="extraModal{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="extraModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLongTitle">Poster: {{image.posted_by}}</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </div>
+
+    <div class="modal-body">
+      <img class="card-img-top" class="img-responsive" src="{{image.insta_image.url}}" data-target="#extraModal{{image.id}}" data-toggle="modal" size="100px200">
+      <p>About: {{image.caption}}</p>
+      <label>{{image.likes}} Likes</label>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-btn-secondary" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>
+</div>
+
+</div>
+{% endfor %}
+{% endblock %}
