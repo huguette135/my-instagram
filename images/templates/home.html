@@ -1,3 +1,6 @@
+
+122 lines (105 sloc)  4.99 KB
+ 
 {%extends 'base.html'%}
 {% block content %}
 {{ block.super}}
@@ -15,6 +18,7 @@
     <div class="col-1"></div>
     <div class="col-9" style="max-width:40rem; margin-top:20px;">
       {% for image in images %}
+
       <div class="card mr-0" style="max-width:40rem; margin-top:10px;">
         <div class="card-header"><img class="img-fluid rounded-circle" src="{{image.profile.profile_photo.url}}" style="height:40px;margin-top:5px;margin-bottom:5px;">
           <a href="/profile/{{user.id}}">
@@ -27,22 +31,23 @@
             <a href="#sema" style="color:black;"><i class="far fa-comment"></i></a>
             <a href="/upload"><i class="far fa-arrow-alt-circle-up" style="margin-right:15px;color:black;"></i></a>
 
-        </div>
-        <div class="like-section">
-          {% if image.likes >= 1 %}
-          <label>{{image.likes}} Likes</label>
-          {% endif %}
-          <p><strong>{{image.posted_by}} </strong>{{image.caption}}</p>
-          {% for comment in comments %}
-          {% if image.id == comment.image.id %}
-          <p><strong>{{comment.poster}}</strong> {{comment.comment}}</p>
-          {% endif %}
-          {%endfor%}
-          {{form.media}}
+          </div>
+          <div class="like-section">
+            {% if image.likes >= 1 %}
+            <label>{{image.likes}} Likes</label>
+            {% endif %}
+            <p><strong>{{image.posted_by}} </strong>{{image.caption}}</p>
+            {% for comment in comments %}
+            {% if image.id == comment.image.id %}
+            <p><strong>{{comment.poster}}</strong> {{comment.comment}}</p>
+            {% endif %}
+            {%endfor%}
+            {{form.media}}
 
-          <form action="{%url 'comment' pk=image.id%}" method="post" enctype="multipart/form-data" id="sema">
-            {%csrf_token%}
-            {% bootstrap_form form%}
+            <form action="{%url 'comment' pk=image.id%}" method="post" enctype="multipart/form-data" id="sema">
+              {%csrf_token%}
+
+              {% bootstrap_form form%}
 
             </form>
 
@@ -88,32 +93,32 @@
           {% endif %}
           {% endfor %}
         </div>
+      </div>
     </div>
   </div>
-</div>
 </div>
 <!-- Large modal -->
 {% for image in images %}
 <!-- Modal -->
 <div class="modal fade" id="extraModal{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="extraModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLongTitle">Poster: {{image.posted_by}}</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Poster: {{image.posted_by}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </div>
 
-    <div class="modal-body">
-      <img class="card-img-top" class="img-responsive" src="{{image.insta_image.url}}" data-target="#extraModal{{image.id}}" data-toggle="modal" size="100px200">
-      <p>About: {{image.caption}}</p>
-      <label>{{image.likes}} Likes</label>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-btn-secondary" data-dismiss="modal">Close</button>
+      <div class="modal-body">
+        <img class="card-img-top" class="img-responsive" src="{{image.insta_image.url}}" data-target="#extraModal{{image.id}}" data-toggle="modal" size="100px200">
+        <p>About: {{image.caption}}</p>
+        <label>{{image.likes}} Likes</label>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-</div>
 
 </div>
 {% endfor %}
