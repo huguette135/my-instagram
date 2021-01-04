@@ -1,6 +1,4 @@
-# 🅸🅽🆂🆃🅰🅿🅸🅲🅷🅰
-
-
+# My instagram
 
 ## Description
 This is aclone of the popular social media application: Instagram. The application allows users to upload, like and comment on other peoples images. Images must have captions and users have profiles where they can see all their images. The admin is  currently responsible for editing or deleting images.
